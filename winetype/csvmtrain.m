@@ -1,10 +1,12 @@
 clear, clc, close all;
+addpath '../lib'
+
 % Load training data
-wine    = readtable('trainingdataset.csv');
+wine    = readtable('../data/trainingdataset.csv');
 wine    = table2dataset(wine);
 
 % Load test data
-testwine  = readtable('testdataset.csv');
+testwine  = readtable('../data/testdataset.csv');
 testwine  = table2dataset(testwine);
 
 % Convert categorical variables such as type colum into nominal arrays
@@ -18,3 +20,5 @@ accuracy   = mean((double(Type_svm == testwine.type)));
 
 wsc  = fScore(testwine.type, Type_svm, 'White');
 rsc  = fScore(testwine.type, Type_svm, 'Red');
+
+rmpath '../lib'
